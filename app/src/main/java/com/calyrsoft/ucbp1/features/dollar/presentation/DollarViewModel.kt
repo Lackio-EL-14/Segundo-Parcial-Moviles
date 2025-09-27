@@ -34,9 +34,10 @@ class DollarViewModel(
 
     fun getDollar() {
         viewModelScope.launch(Dispatchers.IO) {
-                    getToken()
-                    fetchDollarUseCase.invoke().collect {
-                        data -> _uiState.value = DollarUIState.Success(data) }
+            getToken()
+            fetchDollarUseCase.invoke().collect { model ->
+                _uiState.value = DollarUIState.Success(model)
+            }
         }
     }
 
