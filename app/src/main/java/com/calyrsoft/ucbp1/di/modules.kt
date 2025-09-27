@@ -72,10 +72,10 @@ val appModule = module {
 
     // GithubService
     single<GithubService> {
-        get<Retrofit>( named(NetworkConstants.RETROFIT_GITHUB)).create(GithubService::class.java)
+        get<Retrofit>(named(NetworkConstants.RETROFIT_GITHUB)).create(GithubService::class.java)
     }
-    single{ GithubRemoteDataSource(get()) }
-    single<IGithubRepository>{ GithubRepository(get()) }
+    single { GithubRemoteDataSource(get()) }
+    single<IGithubRepository> { GithubRepository(get()) }
 
     factory { FindByNickNameUseCase(get()) }
     viewModel { GithubViewModel(get(), get()) }
@@ -90,18 +90,29 @@ val appModule = module {
     single { DollarLocalDataSource(get()) }
     single<IDollarRepository> { DollarRepository(get(), get()) }
     factory { FetchDollarUseCase(get()) }
-    viewModel{ DollarViewModel(get()) }
+    viewModel { DollarViewModel(get()) }
 
 
-    single(named("apiKey")) {
-        androidApplication().getString(R.string.api_key)
-    }
+    single(named("apiKey")) { androidApplication().getString(R.string.api_key) }
 
     single<MovieService> {
         get<Retrofit>(named(NetworkConstants.RETROFIT_MOVIE)).create(MovieService::class.java)
     }
+
+
     single { MovieRemoteDataSource(get(), get(named("apiKey"))) }
-    single<IMoviesRepository> { MovieRepository(get()) }
-    factory { FetchPopularMoviesUseCase(get()) }
-    viewModel{ PopularMoviesViewModel(get()) }
+
+    //single {
+      //  MovieRepositor { }                // repositorio concreto
+        //single<IMoviesRepository> { get<MovieRepository>() } // repositorio como interfaz
+
+        //factory { FetchPopularMoviesUseCase(get()) }
+
+        //viewModel {
+          //  PopularMoviesViewModel(
+              //  fetchPopularMovies = get(), // FetchPopularMoviesUseCase
+            //    repo = get()                // MovieRepository concreto
+            //)
+       // }
+    //}
 }

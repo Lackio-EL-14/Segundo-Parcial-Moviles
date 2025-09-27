@@ -29,15 +29,14 @@ fun ProfileScreen(
 ) {
     val state = profileViewModel.state.collectAsState()
 
-    LaunchedEffect(Unit) {
-        profileViewModel.showProfile()
-    }
+    LaunchedEffect(Unit) { profileViewModel.showProfile() }
 
-    when(val st = state.value) {
+    when (val st = state.value) {
         is ProfileViewModel.ProfileUiState.Error -> Text(st.message)
         ProfileViewModel.ProfileUiState.Init -> Text("")
         ProfileViewModel.ProfileUiState.Loading -> CircularProgressIndicator()
         is ProfileViewModel.ProfileUiState.Success -> {
+            val p = st.profile
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -46,32 +45,20 @@ fun ProfileScreen(
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 AsyncImage(
-                    model = st.profile.pathUrl,
-                    contentDescription = "Foto de perfil de ${st.profile.name}",
+                    model = p.pathUrl,
+                    contentDescription = "Foto de perfil de ${p.name.value}",
                     modifier = Modifier
                         .size(120.dp)
-                        .clip(CircleShape) // Opcional: imagen circular
+                        .clip(CircleShape)
                         .border(2.dp, Color.Gray, CircleShape),
                     contentScale = ContentScale.Crop
                 )
 
+                Text(text = p.name.value, style = MaterialTheme.typography.titleMedium)
+                Text(text = p.email.value, style = MaterialTheme.typography.bodyMedium)
+                Text(text = p.cellphone.value, style = MaterialTheme.typography.bodyMedium)
                 Text(
-                    text = st.profile.name,
-                    style = MaterialTheme.typography.titleMedium
-                )
-
-                Text(
-                    text = st.profile.email,
-                    style = MaterialTheme.typography.bodyMedium
-                )
-
-                Text(
-                    text = st.profile.cellphone,
-                    style = MaterialTheme.typography.bodyMedium
-                )
-
-                Text(
-                    text = st.profile.summary,
+                    text = p.summary.value,
                     style = MaterialTheme.typography.bodySmall,
                     modifier = Modifier.padding(top = 8.dp),
                     textAlign = TextAlign.Center
@@ -79,6 +66,4 @@ fun ProfileScreen(
             }
         }
     }
-
-
 }
