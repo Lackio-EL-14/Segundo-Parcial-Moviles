@@ -11,4 +11,5 @@ data class MovieEntity(
     val pathUrl: String,
     val title: String,
     val isLiked: Boolean = false
+
 )

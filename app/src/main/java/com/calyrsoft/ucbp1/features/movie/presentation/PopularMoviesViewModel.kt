@@ -14,6 +14,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
+
 class PopularMoviesViewModel(
     private val fetchPopularMovies: FetchPopularMoviesUseCase,
     private val repo: MovieRepository

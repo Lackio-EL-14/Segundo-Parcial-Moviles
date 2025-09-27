@@ -77,6 +77,7 @@ fun CardMovie(movie: MovieModel, onLikeClick: (MovieModel) -> Unit) {
                 maxLines = 2
             )
 
+
             IconButton(onClick = { onLikeClick(movie) }) {
                 Icon(
                     imageVector = if (movie.isLiked) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder,

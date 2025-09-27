@@ -8,6 +8,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.google.android.gms.tflite.support.Empty
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -38,6 +39,7 @@ fun PopularMoviesScreen(
             is PopularMoviesViewModel.UiState.Loading -> {
                 CircularProgressIndicator()
             }
+
 
             is PopularMoviesViewModel.UiState.Success -> {
                 Column(

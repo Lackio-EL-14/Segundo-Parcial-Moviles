@@ -24,6 +24,7 @@ abstract class AppRoomDatabase : RoomDatabase() {
                     context,
                     AppRoomDatabase::class.java,
                     "movie_db"
+
                 )
                     .fallbackToDestructiveMigration()
                     .build()
