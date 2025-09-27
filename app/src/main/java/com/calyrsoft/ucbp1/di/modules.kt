@@ -25,9 +25,7 @@ import com.calyrsoft.ucbp1.features.profile.data.repository.ProfileRepository
 import com.calyrsoft.ucbp1.features.profile.domain.repository.IProfileRepository
 import com.calyrsoft.ucbp1.features.profile.domain.usecase.GetProfileUseCase
 import okhttp3.OkHttpClient
-import org.koin.android.BuildConfig
 import org.koin.android.ext.koin.androidApplication
-import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
